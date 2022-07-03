@@ -1,6 +1,9 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/awesome-sphere/as-general/models"
+	"github.com/gin-gonic/gin"
+)
 
 func main() {
 	gin.SetMode(gin.DebugMode)
@@ -10,5 +13,6 @@ func main() {
 			"message": "auth",
 		})
 	})
+	models.ConnectDatabase()
 	server.Run(":9000")
 }
