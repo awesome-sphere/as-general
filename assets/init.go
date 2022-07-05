@@ -1,6 +1,7 @@
 package assets
 
 import (
+	"context"
 	"log"
 
 	"github.com/awesome-sphere/as-general/utils"
@@ -10,6 +11,7 @@ import (
 )
 
 func ConnectMinio() {
+	ctx := context.Background()
 	endpoint := "localhost:9000"
 	accessKeyID := utils.GetenvOr("MINIO_ACCESS_KEY", "minio")
 	secretAccessKey := utils.GetenvOr("MINIO_SECRET_KEY", "minio123")
@@ -24,4 +26,7 @@ func ConnectMinio() {
 	}
 
 	log.Printf("%#v\n", minioClient)
+
+	UploadAssets(ctx, minioClient, "assets/trailers/", "trailers", "video/mp4")
+	UploadAssets(ctx, minioClient, "assets/posters/", "posters", "image/jpeg")
 }
