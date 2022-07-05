@@ -1,7 +1,9 @@
 package main
 
 import (
+	"github.com/awesome-sphere/as-general/assets"
 	"github.com/awesome-sphere/as-general/models"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -14,5 +16,6 @@ func main() {
 		})
 	})
 	models.ConnectDatabase()
-	server.Run(":9000")
+	assets.ConnectMinio()
+	server.Run(":9002")
 }
