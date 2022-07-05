@@ -10,7 +10,9 @@ import (
 	"gorm.io/gorm"
 )
 
-func ConnectDatabase() *gorm.DB {
+var DB *gorm.DB
+
+func ConnectDatabase() {
 	dbUser := utils.GetenvOr("POSTGRES_USER", "pkinwza")
 	dbPassword := utils.GetenvOr("POSTGRES_PASSWORD", "securepassword")
 	dbHost := utils.GetenvOr("POSTGRES_HOST", "localhost")
@@ -34,5 +36,5 @@ func ConnectDatabase() *gorm.DB {
 
 	db.AutoMigrate(&Movie{})
 
-	return db
+	DB = db
 }
