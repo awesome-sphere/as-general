@@ -10,6 +10,9 @@ import (
 	"github.com/minio/minio-go/v7/pkg/credentials"
 )
 
+var CTX context.Context
+var MINIO_CLIENT *minio.Client
+
 func ConnectMinio() {
 	ctx := context.Background()
 	endpoint := "localhost:9000"
@@ -25,8 +28,11 @@ func ConnectMinio() {
 		log.Fatalln(err)
 	}
 
-	log.Printf("%#v\n", minioClient)
+	log.Println("Successfully connected to Minio")
 
-	UploadAssets(ctx, minioClient, "assets/trailers/", "trailers", "video/mp4")
-	UploadAssets(ctx, minioClient, "assets/posters/", "posters", "image/jpeg")
+	CTX, MINIO_CLIENT = ctx, minioClient
+
+	UploadAssets("assets/trailers/", "trailers", "video/mp4")
+	UploadAssets("assets/posters/", "posters", "image/jpeg")
+
 }
