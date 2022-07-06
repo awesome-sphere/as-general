@@ -3,6 +3,7 @@ package service
 import (
 	"net/http"
 
+	"github.com/awesome-sphere/as-general/assets"
 	"github.com/awesome-sphere/as-general/models"
 
 	"github.com/gin-gonic/gin"
@@ -18,6 +19,9 @@ func GetMovie(c *gin.Context) {
 		})
 		return
 	}
+
+	movie.Poster = assets.GetPoster(movie.Poster)
+	movie.Trailer = assets.GetTrailer(movie.Trailer)
 
 	c.JSON(http.StatusOK, gin.H{
 		"movie": movie,

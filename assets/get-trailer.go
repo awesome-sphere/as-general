@@ -2,6 +2,7 @@ package assets
 
 import (
 	"encoding/base64"
+	"fmt"
 	"log"
 
 	"github.com/minio/minio-go/v7"
@@ -23,7 +24,7 @@ func GetTrailer(fileName string) string {
 		buffer := make([]byte, fileInfo.Size)
 		obj.Read(buffer)
 		defer obj.Close()
-		return base64.StdEncoding.EncodeToString(buffer)
+		return fmt.Sprintf("data:video/mp4;base64,%s", base64.StdEncoding.EncodeToString(buffer))
 	}
 	return ""
 }
