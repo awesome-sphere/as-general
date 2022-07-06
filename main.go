@@ -15,9 +15,9 @@ func main() {
 	models.ConnectDatabase()
 	assets.ConnectMinio()
 
-	server.GET("/get-all-movies", service.GetAllMovies)
+	server.GET("movie/get-all-movies", service.GetAllMovies)
 
-	server.POST("/add-movie", service.AddMovie)
+	server.POST("movie/add-movie", service.AddMovie)
 
 	server.Run(":9002")
 }
