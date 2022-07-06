@@ -16,6 +16,7 @@ func main() {
 	assets.ConnectMinio()
 
 	server.GET("movie/get-all-movies", service.GetAllMovies)
+	server.GET("movie/get-movie/:id", service.GetMovie)
 
 	server.POST("movie/add-movie", service.AddMovie)
 
