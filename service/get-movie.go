@@ -13,7 +13,7 @@ func GetMovie(c *gin.Context) {
 	var movie models.Movie
 	id := c.Param("id")
 
-	if err := models.DB.Find(&movie).Where("id", id).Error; err != nil {
+	if err := models.DB.First(&movie, "id", id).Error; err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": err.Error(),
 		})
