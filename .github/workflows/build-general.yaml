@@ -1,0 +1,19 @@
+name: Build as-general CI
+
+on: 
+  push:
+    branches: [ master ]
+
+jobs:
+  build-as-general:
+    runs-on: ubuntu-latest
+    name: Building as-general
+    steps:
+      - uses: actions/checkout@v3
+      - id: foo
+        uses: awesome-sphere/as-ci-cd-template@v1
+        with:
+          repo: as-general
+          token: ${{ secrets.GITHUB_TOKEN }}
+          REGISTRY: ghcr.io
+          BASE_IMG_NAME: ${{ github.repository }}
