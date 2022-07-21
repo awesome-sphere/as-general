@@ -33,8 +33,18 @@ func ConnectDatabase() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	var shouldSeed bool
+
+	if (!db.Migrator().HasTable("movies")){
+		shouldSeed = true
+	}
 
 	db.AutoMigrate(&Movie{})
+	DB = db
+
+	if (shouldSeed){
+		go SeedData()
+	}
 
 	DB = db
 }
