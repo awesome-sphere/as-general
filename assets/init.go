@@ -15,7 +15,7 @@ var MINIO_CLIENT *minio.Client
 
 func ConnectMinio() {
 	ctx := context.Background()
-	endpoint := "minio-svc"
+	endpoint := "minio-service:9000"
 	accessKeyID := utils.GetenvOr("MINIO_ACCESS_KEY", "minio")
 	secretAccessKey := utils.GetenvOr("MINIO_SECRET_KEY", "minio123")
 	useSSL := false
