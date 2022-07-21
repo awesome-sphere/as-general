@@ -25,7 +25,7 @@ func ConnectMinio() {
 		Secure: useSSL,
 	})
 	if err != nil {
-		log.Fatalln(err)
+		log.Println(err)
 	}
 
 	log.Println("Successfully connected to Minio")

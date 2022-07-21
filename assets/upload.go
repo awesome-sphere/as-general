@@ -14,7 +14,7 @@ func createBucket(bucketName string) {
 		if errBucketExists == nil && exists {
 			log.Printf("Bucket %s already exists\n", bucketName)
 		} else {
-			log.Fatalln(err)
+			log.Println(err)
 		}
 	} else {
 		log.Printf("Successfully created %s\n", bucketName)
@@ -27,7 +27,7 @@ func UploadAssets(dirName string, bucketName string, contentType string) {
 
 	files, err := ioutil.ReadDir(dirName)
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
 	}
 
 	for _, file := range files {
@@ -36,7 +36,7 @@ func UploadAssets(dirName string, bucketName string, contentType string) {
 
 		info, err := MINIO_CLIENT.FPutObject(CTX, bucketName, fileName, filePath, minio.PutObjectOptions{ContentType: contentType})
 		if err != nil {
-			log.Fatalln(err)
+			log.Println(err)
 		}
 
 		log.Printf("Successfully uploaded %s to %s\n", fileName, info.Bucket)

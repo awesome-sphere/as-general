@@ -11,7 +11,7 @@ import (
 func getPosterObject(fileName string) *minio.Object {
 	obj, err := MINIO_CLIENT.GetObject(CTX, "posters", fileName, minio.GetObjectOptions{})
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
 		return nil
 	}
 	log.Printf("Successfully retrieved %s", fileName)

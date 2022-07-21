@@ -31,18 +31,18 @@ func ConnectDatabase() {
 	db, err := gorm.Open(postgres.Open(dbURL), &gorm.Config{})
 
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
 	}
 	var shouldSeed bool
 
-	if (!db.Migrator().HasTable("movies")){
+	if !db.Migrator().HasTable("movies") {
 		shouldSeed = true
 	}
 
 	db.AutoMigrate(&Movie{})
 	DB = db
 
-	if (shouldSeed){
+	if shouldSeed {
 		go SeedData()
 	}
 
